@@ -1,0 +1,13 @@
+{
+    "ID": "418E3BD256F140D8ADD693C27BDC3126",
+    "ActionKeyword": "+",
+    "IsGlobal": true,
+    "Name": "Json Search",
+    "Author": "Blaise Rudaz",
+    "Version": "0.0.1",
+    "Language": "csharp",
+    "Website": "https://aka.ms/powertoys",
+    "ExecuteFileName": "Community.PowerToys.Run.Plugin.JsonSearch.dll",
+    "IcoPathDark": "Images\\shell.dark.png",
+    "IcoPathLight": "Images\\shell.light.png"
+}

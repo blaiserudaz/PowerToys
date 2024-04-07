@@ -29,13 +29,13 @@ namespace Community.PowerToys.Run.Plugin.JsonSearch
 
         public static string PluginID => "8ed1802bc23b4c52ac07eea00d57ee9a";
 
+        private string? IconPath { get; set; }
+
         private PluginInitContext? _context;
         private bool _disposed;
         private string? _jsonShortcutsFullPath = string.Empty;
         private string? _customIconPath = string.Empty;
         private List<Data.Shortcut>? _shortcuts;
-
-        private string? IconPath { get; set; }
 
         public IEnumerable<PluginAdditionalOption> AdditionalOptions => new List<PluginAdditionalOption>()
         {

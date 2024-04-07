@@ -31,14 +31,11 @@ namespace Community.PowerToys.Run.Plugin.JsonSearch
 
         private PluginInitContext? _context;
         private bool _disposed;
+        private string? _jsonShortcutsFullPath = string.Empty;
+        private string? _customIconPath = string.Empty;
+        private List<Data.Shortcut>? _shortcuts;
 
         private string? IconPath { get; set; }
-
-        private string? JsonShortcutsFullPath { get; set; }
-
-        private string? CustomIconPath { get; set; }
-
-        private List<Data.Shortcut>? _shortcuts;
 
         public IEnumerable<PluginAdditionalOption> AdditionalOptions => new List<PluginAdditionalOption>()
         {
@@ -67,15 +64,15 @@ namespace Community.PowerToys.Run.Plugin.JsonSearch
             var workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             workingDirectory = Path.Combine(workingDirectory, "JsonSearch");
 
-            JsonShortcutsFullPath = File.ReadAllText(Path.Combine(workingDirectory, "shortcuts.json"));
-            CustomIconPath = Path.Combine(workingDirectory, "Images");
+            _jsonShortcutsFullPath = File.ReadAllText(Path.Combine(workingDirectory, "shortcuts.json"));
+            _customIconPath = Path.Combine(workingDirectory, "Images");
         }
 
         private void ReadUserJsonShortcuts()
         {
-            if (!string.IsNullOrEmpty(JsonShortcutsFullPath))
+            if (!string.IsNullOrEmpty(_jsonShortcutsFullPath))
             {
-                _shortcuts = JsonSerializer.Deserialize<List<Data.Shortcut>>(JsonShortcutsFullPath);
+                _shortcuts = JsonSerializer.Deserialize<List<Data.Shortcut>>(_jsonShortcutsFullPath);
             }
         }
 
@@ -97,9 +94,9 @@ namespace Community.PowerToys.Run.Plugin.JsonSearch
                             icon = IconPath;
                         }
 
-                        if (!string.IsNullOrEmpty(e.icon) && !string.IsNullOrEmpty(CustomIconPath))
+                        if (!string.IsNullOrEmpty(e.icon) && !string.IsNullOrEmpty(_customIconPath))
                         {
-                            icon = Path.Combine(CustomIconPath, e.icon);
+                            icon = Path.Combine(_customIconPath, e.icon);
                         }
 
                         if (!string.IsNullOrEmpty(e.url))

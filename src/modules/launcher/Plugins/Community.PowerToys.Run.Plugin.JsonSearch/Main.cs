@@ -62,7 +62,7 @@ namespace Community.PowerToys.Run.Plugin.JsonSearch
         private void InitializeUserProfilePath()
         {
             var workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            workingDirectory = Path.Combine(workingDirectory, "JsonSearch");
+            workingDirectory = Path.Combine(workingDirectory, "PowerToys", "RunPlugins", "JsonSearch");
 
             _jsonShortcutsFullPath = File.ReadAllText(Path.Combine(workingDirectory, "shortcuts.json"));
             _customIconPath = Path.Combine(workingDirectory, "Images");
